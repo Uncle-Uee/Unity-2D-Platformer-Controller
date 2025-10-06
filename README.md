@@ -1,2 +1,2 @@
-# unity-2d-platformer-controller
+# Unity2D Platformer Controller
 Unity 2D Platformer Character Controller 
