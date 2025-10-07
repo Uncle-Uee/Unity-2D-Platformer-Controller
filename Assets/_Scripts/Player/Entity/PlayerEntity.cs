@@ -13,9 +13,11 @@ namespace PlatCtrl2D.Player.Entity
         [SerializeField]
         private AnimatorComponent _animator;
         [SerializeField]
-        private PlayerInputComponent _playerInput;
-        [SerializeField]
         private GroundCheckComponent _groundCheck;
+        [SerializeField]
+        private InteractionComponent interaction;
+        [SerializeField]
+        private PlayerInputComponent _playerInput;
 
         [Header("Behaviours")]
         [SerializeField]
@@ -26,6 +28,8 @@ namespace PlatCtrl2D.Player.Entity
         private AttackBehaviour _attackBehaviour;
         [SerializeField]
         private WaitBehaviour _waitBehaviour;
+        [SerializeField]
+        private PickupBehaviour _pickupBehaviour;
 
         [Header("States")]
         public bool IsWaiting;
@@ -33,6 +37,7 @@ namespace PlatCtrl2D.Player.Entity
         public bool IsRunning;
         public bool IsJumping;
         public bool IsAttacking;
+        public bool IsPickingUp;
         public bool IsDead;
         public bool IsHurt;
 
@@ -83,18 +88,36 @@ namespace PlatCtrl2D.Player.Entity
         /// <param name="isAttacking"> integer input (1 for true, 0 for false)</param>
         public void SetIsAttacking(int isAttacking) => IsAttacking = isAttacking > 0;
 
+        /// <summary>
+        /// Set the IsPickingUp state based on an integer input (1 for true, 0 for false).
+        /// The method is used as an Animation Event
+        /// </summary>
+        /// <param name="isPickingUp"> integer input (1 for true, 0 for false)</param>
+        public void SetIsPickingUp(int isPickingUp)
+        {
+            IsPickingUp = isPickingUp > 0;
+            if (!IsPickingUp)
+            {
+                _pickupBehaviour.OnPickUpComplete();
+            }
+        }
+
         #endregion
 
         #region DO METHODS
 
         protected override void DoOnAwake()
         {
-            _playerInput.Init(_movementBehaviour, _jumpBehaviour, _attackBehaviour);
             _groundCheck.Init(transform);
+            interaction.Init(_pickupBehaviour);
+            
             _movementBehaviour.Init(this, transform, _groundCheck, _animator);
             _jumpBehaviour.Init(this, _groundCheck, _animator);
             _attackBehaviour.Init(this, _animator, _groundCheck);
             _waitBehaviour.Init(this, _animator);
+            _pickupBehaviour.Init(this, _animator);
+            
+            _playerInput.Init(_movementBehaviour, _jumpBehaviour, _attackBehaviour, _pickupBehaviour);
             _playerInput.RegisterInputActions();
         }
 

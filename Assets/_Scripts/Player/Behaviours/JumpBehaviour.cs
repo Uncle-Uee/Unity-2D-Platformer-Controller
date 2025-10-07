@@ -9,19 +9,21 @@ namespace PlatCtrl2D.Player.Behaviours
     [Serializable]
     public class JumpBehaviour
     {
+        #region FIELDS
+
         [Header("Required Components")]
         [SerializeField]
         private Rigidbody2D _rigidbody;
 
         [Header("Jump Settings")]
         [SerializeField]
-        [Tooltip( "The force applied to the player when jumping." )]
+        [Tooltip("The force applied to the player when jumping.")]
         private float _jumpForce = 6;
         [SerializeField]
-        [Tooltip( "The time the player has before being able to jump after falling." )]
+        [Tooltip("The time the player has before being able to jump after falling.")]
         private float _coyoteTime = 0.25f;
         [SerializeField]
-        [Tooltip( "The time elapsed before the player automatically jumps again after falling." )]
+        [Tooltip("The time elapsed before the player automatically jumps again after falling.")]
         private float _jumpBufferTime = 0.1f;
         [SerializeField]
         private int _maxJumps = 2;
@@ -39,6 +41,8 @@ namespace PlatCtrl2D.Player.Behaviours
         private int _jumpCount;
         private bool _isJumpingHeld;
         private float _currentYVelocity;
+
+        #endregion
 
         #region INIT METHOD
 

@@ -17,9 +17,11 @@ namespace PlatCtrl2D.Player.Components
         private static readonly int IsJumping = Animator.StringToHash("IsJumping");
         private static readonly int IsFalling = Animator.StringToHash("IsFalling");
         private static readonly int OnWait = Animator.StringToHash("OnWait");
+        private static readonly int OnPunch = Animator.StringToHash("OnAttack");
+        private static readonly int OnPickupGround = Animator.StringToHash("OnPickupGround");
+        private static readonly int OnPickupWall = Animator.StringToHash("OnPickupWall");
         private static readonly int OnDamage = Animator.StringToHash("OnDamage");
         private static readonly int OnDeath = Animator.StringToHash("OnDeath");
-        private static readonly int OnPunch = Animator.StringToHash("OnAttack");
 
         #endregion
 
@@ -38,6 +40,8 @@ namespace PlatCtrl2D.Player.Components
         public void OnDamageTrigger() => _animator?.SetTrigger(OnDamage);
         public void OnDeathTrigger() => _animator?.SetTrigger(OnDeath);
         public void OnPunchTrigger() => _animator?.SetTrigger(OnPunch);
+        public void OnPickupGroundTrigger() => _animator?.SetTrigger(OnPickupGround);
+        public void OnPickupWallTrigger() => _animator?.SetTrigger(OnPickupWall);
 
         #endregion
     }

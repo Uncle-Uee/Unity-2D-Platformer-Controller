@@ -1,7 +1,5 @@
 using System;
 using PlatCtrl2D.Player.Behaviours;
-using PlatCtrl2D.Player.Entity;
-using UnityEngine;
 
 namespace PlatCtrl2D.Player.Components
 {
@@ -13,6 +11,7 @@ namespace PlatCtrl2D.Player.Components
         private MovementBehaviour _movementBehaviour;
         private JumpBehaviour _jumpBehaviour;
         private AttackBehaviour _attackBehaviour;
+        private PickupBehaviour _pickupBehaviour;
 
         #endregion
 
@@ -35,7 +34,7 @@ namespace PlatCtrl2D.Player.Components
 
         #region INIT METHOD
 
-        public void Init(MovementBehaviour movementBehaviour, JumpBehaviour jumpBehaviour, AttackBehaviour attackBehaviour)
+        public void Init(MovementBehaviour movementBehaviour, JumpBehaviour jumpBehaviour, AttackBehaviour attackBehaviour, PickupBehaviour pickupBehaviour)
         {
             InputSystemActions = new InputSystem_Actions();
             PlayerActions = InputSystemActions.Player;
@@ -43,6 +42,7 @@ namespace PlatCtrl2D.Player.Components
             _movementBehaviour = movementBehaviour;
             _jumpBehaviour = jumpBehaviour;
             _attackBehaviour = attackBehaviour;
+            _pickupBehaviour = pickupBehaviour;
         }
 
         #endregion
@@ -64,6 +64,9 @@ namespace PlatCtrl2D.Player.Components
             PlayerActions.Jump.performed += _jumpBehaviour.OnJump;
             PlayerActions.Jump.canceled += _jumpBehaviour.OnJump;
 
+            PlayerActions.Interact.started += _pickupBehaviour.OnPickUp;
+            PlayerActions.Interact.canceled += _pickupBehaviour.OnPickUp;
+
             PlayerActions.Attack.performed += _attackBehaviour.OnAttack;
             PlayerActions.Attack.canceled += _attackBehaviour.OnAttack;
         }
@@ -78,6 +81,9 @@ namespace PlatCtrl2D.Player.Components
 
             PlayerActions.Jump.performed -= _jumpBehaviour.OnJump;
             PlayerActions.Jump.canceled -= _jumpBehaviour.OnJump;
+
+            PlayerActions.Interact.started -= _pickupBehaviour.OnPickUp;
+            PlayerActions.Interact.canceled -= _pickupBehaviour.OnPickUp;
 
             PlayerActions.Attack.performed -= _attackBehaviour.OnAttack;
             PlayerActions.Attack.canceled -= _attackBehaviour.OnAttack;
