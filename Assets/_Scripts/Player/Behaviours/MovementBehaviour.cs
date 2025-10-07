@@ -83,8 +83,7 @@ namespace PlatCtrl2D.Player.Behaviours
             else
             {
                 // Calculate Air Velocity
-                float currentAirSpeed = _wasRunningOnJump ? _runningAirSpeed : _airSpeed;
-                targetXVelocity = currentAirSpeed * XDirection;
+                targetXVelocity = (_wasRunningOnJump ? _runningAirSpeed : _airSpeed) * XDirection;
 
                 // Preserve some momentum when XDirection is 0
                 if (Mathf.Approximately(XDirection, 0f))

@@ -38,11 +38,6 @@ namespace PlatCtrl2D.Player.Behaviours
             }
         }
 
-        public void SetIsAttacking(int isAttacking)
-        {
-            _playerEntity.IsAttacking = isAttacking > 0;
-        }
-
         #endregion
     }
 }

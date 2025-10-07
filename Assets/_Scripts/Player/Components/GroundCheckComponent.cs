@@ -1,5 +1,4 @@
 using System;
-using PlatCtrl2D.Player.Entity;
 using UnityEngine;
 
 namespace PlatCtrl2D.Player.Components
@@ -23,7 +22,6 @@ namespace PlatCtrl2D.Player.Components
         [SerializeField]
         private bool _onGround;
 
-        private PlayerEntity _playerEntity;
         private Transform _transform;
 
         #endregion
@@ -36,9 +34,8 @@ namespace PlatCtrl2D.Player.Components
 
         #region INIT METHOD
 
-        public void Init(PlayerEntity playerEntity, Transform transform)
+        public void Init(Transform transform)
         {
-            _playerEntity = playerEntity;
             _transform = transform;
         }
 

@@ -27,7 +27,7 @@ namespace PlatCtrl2D.Player.Entity
         [SerializeField]
         private WaitBehaviour _waitBehaviour;
 
-        [Header("Status")]
+        [Header("States")]
         public bool IsWaiting;
         public bool IsMoving;
         public bool IsRunning;
@@ -74,12 +74,23 @@ namespace PlatCtrl2D.Player.Entity
 
         #endregion
 
+        #region STATE METHODS
+
+        /// <summary>
+        /// Set the IsAttacking state based on an integer input (1 for true, 0 for false).
+        /// The method is used as an Animation Event
+        /// </summary>
+        /// <param name="isAttacking"> integer input (1 for true, 0 for false)</param>
+        public void SetIsAttacking(int isAttacking) => IsAttacking = isAttacking > 0;
+
+        #endregion
+
         #region DO METHODS
 
         protected override void DoOnAwake()
         {
             _playerInput.Init(_movementBehaviour, _jumpBehaviour, _attackBehaviour);
-            _groundCheck.Init(this, transform);
+            _groundCheck.Init(transform);
             _movementBehaviour.Init(this, transform, _groundCheck, _animator);
             _jumpBehaviour.Init(this, _groundCheck, _animator);
             _attackBehaviour.Init(this, _animator, _groundCheck);
@@ -101,12 +112,6 @@ namespace PlatCtrl2D.Player.Entity
         {
             _playerInput.Destroy();
         }
-
-        #endregion
-
-        #region REFERENCE METHODS
-
-        public void SetIsAttacking(int isAttacking) => _attackBehaviour.SetIsAttacking(isAttacking);
 
         #endregion
 
