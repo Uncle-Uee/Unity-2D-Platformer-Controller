@@ -12,6 +12,7 @@ namespace PlatCtrl2D.Player.Components
         private JumpBehaviour _jumpBehaviour;
         private AttackBehaviour _attackBehaviour;
         private PickupBehaviour _pickupBehaviour;
+        private TalkBehaviour _talkBehaviour;
 
         #endregion
 
@@ -34,7 +35,13 @@ namespace PlatCtrl2D.Player.Components
 
         #region INIT METHOD
 
-        public void Init(MovementBehaviour movementBehaviour, JumpBehaviour jumpBehaviour, AttackBehaviour attackBehaviour, PickupBehaviour pickupBehaviour)
+        public void Init(
+            MovementBehaviour movementBehaviour,
+            JumpBehaviour jumpBehaviour,
+            AttackBehaviour attackBehaviour,
+            PickupBehaviour pickupBehaviour,
+            TalkBehaviour talkBehaviour
+        )
         {
             InputSystemActions = new InputSystem_Actions();
             PlayerActions = InputSystemActions.Player;
@@ -43,6 +50,7 @@ namespace PlatCtrl2D.Player.Components
             _jumpBehaviour = jumpBehaviour;
             _attackBehaviour = attackBehaviour;
             _pickupBehaviour = pickupBehaviour;
+            _talkBehaviour = talkBehaviour;
         }
 
         #endregion
@@ -67,6 +75,9 @@ namespace PlatCtrl2D.Player.Components
             PlayerActions.Interact.started += _pickupBehaviour.OnPickUp;
             PlayerActions.Interact.canceled += _pickupBehaviour.OnPickUp;
 
+            PlayerActions.Interact.started += _talkBehaviour.OnTalk;
+            PlayerActions.Interact.canceled += _talkBehaviour.OnTalk;
+
             PlayerActions.Attack.performed += _attackBehaviour.OnAttack;
             PlayerActions.Attack.canceled += _attackBehaviour.OnAttack;
         }
@@ -84,6 +95,9 @@ namespace PlatCtrl2D.Player.Components
 
             PlayerActions.Interact.started -= _pickupBehaviour.OnPickUp;
             PlayerActions.Interact.canceled -= _pickupBehaviour.OnPickUp;
+
+            PlayerActions.Interact.started -= _talkBehaviour.OnTalk;
+            PlayerActions.Interact.canceled -= _talkBehaviour.OnTalk;
 
             PlayerActions.Attack.performed -= _attackBehaviour.OnAttack;
             PlayerActions.Attack.canceled -= _attackBehaviour.OnAttack;

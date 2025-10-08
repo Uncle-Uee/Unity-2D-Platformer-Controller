@@ -9,14 +9,16 @@ namespace PlatCtrl2D.Player.Components
         #region FIELDS
 
         private PickupBehaviour _pickupBehaviour;
+        private TalkBehaviour _talkBehaviour;
 
         #endregion
 
         #region INIT METHOD
 
-        public void Init(PickupBehaviour pickupBehaviour)
+        public void Init(PickupBehaviour pickupBehaviour, TalkBehaviour talkBehaviour)
         {
             _pickupBehaviour = pickupBehaviour;
+            _talkBehaviour = talkBehaviour;
         }
 
         #endregion
@@ -33,11 +35,22 @@ namespace PlatCtrl2D.Player.Components
             {
                 _pickupBehaviour.SetPickupItem(other.gameObject, PickupType.PickUpWall);
             }
+            if (other.CompareTag("Entity/NPC"))
+            {
+                _talkBehaviour.CanTalk = true;
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            _pickupBehaviour.SetPickupItem(null, PickupType.None, false);
+            if (_pickupBehaviour.CanPickupItem)
+            {
+                _pickupBehaviour.SetPickupItem(null, PickupType.None, false);
+            }
+            if (_talkBehaviour.CanTalk)
+            {
+                _talkBehaviour.CanTalk = false;
+            }
         }
 
         #endregion

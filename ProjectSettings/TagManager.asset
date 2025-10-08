@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
-  - Enemy
   - Projectile/Player
   - Projectile/Enemy
   - Item/Ground
   - Item/Wall
+  - Entity/NPC
+  - Entity/Enemy
   layers:
   - Default
   - TransparentFX
@@ -20,11 +21,11 @@ TagManager:
   - Item
   - Entity/Player
   - Entity/Enemy
+  - Entity/NPC
   - Projectile/Player
   - Projectile/Enemy
   - VFX/Player
-  - VFX/Enemy
-  - 
+  - VFX/Player
   - 
   - 
   - 

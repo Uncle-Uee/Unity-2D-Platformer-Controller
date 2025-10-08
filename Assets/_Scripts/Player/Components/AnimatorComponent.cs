@@ -20,6 +20,7 @@ namespace PlatCtrl2D.Player.Components
         private static readonly int OnPunch = Animator.StringToHash("OnAttack");
         private static readonly int OnPickupGround = Animator.StringToHash("OnPickupGround");
         private static readonly int OnPickupWall = Animator.StringToHash("OnPickupWall");
+        private static readonly int OnTalk = Animator.StringToHash("OnTalk");
         private static readonly int OnDamage = Animator.StringToHash("OnDamage");
         private static readonly int OnDeath = Animator.StringToHash("OnDeath");
 
@@ -42,6 +43,7 @@ namespace PlatCtrl2D.Player.Components
         public void OnPunchTrigger() => _animator?.SetTrigger(OnPunch);
         public void OnPickupGroundTrigger() => _animator?.SetTrigger(OnPickupGround);
         public void OnPickupWallTrigger() => _animator?.SetTrigger(OnPickupWall);
+        public void OnTalkTrigger() => _animator?.SetTrigger(OnTalk);
 
         #endregion
     }
