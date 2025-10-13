@@ -18,8 +18,8 @@ namespace PlatCtrl2D.Player.Components
 
         #region PROPERTIES
 
-        public InputSystem_Actions InputSystemActions { get; private set; }
-        public InputSystem_Actions.PlayerActions PlayerActions { get; private set; }
+        public PlayerInputSystem_Actions InputSystemActions { get; private set; }
+        public PlayerInputSystem_Actions.PlayerActions PlayerActions { get; private set; }
 
         #endregion
 
@@ -43,7 +43,7 @@ namespace PlatCtrl2D.Player.Components
             TalkBehaviour talkBehaviour
         )
         {
-            InputSystemActions = new InputSystem_Actions();
+            InputSystemActions = new PlayerInputSystem_Actions();
             PlayerActions = InputSystemActions.Player;
 
             _movementBehaviour = movementBehaviour;

@@ -262,12 +262,15 @@ MonoBehaviour:
     _waitTime: 10
   _pickupBehaviour:
     CanPickupItem: 0
+  _talkBehaviour:
+    CanTalk: 0
   IsWaiting: 0
   IsMoving: 0
   IsRunning: 0
   IsJumping: 0
   IsAttacking: 0
   IsPickingUp: 0
+  IsTalking: 0
   IsDead: 0
   IsHurt: 0
 --- !u!114 &210951656
@@ -296,7 +299,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
